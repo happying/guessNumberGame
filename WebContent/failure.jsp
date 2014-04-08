@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'success.jsp' starting page</title>
+    <title>My JSP 'failure.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,16 +23,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
 <body>
-<%
-int count=((Integer)session.getAttribute("count")).intValue();
-int num=((Integer)session.getAttribute("save")).intValue();
-long startTime=session.getCreationTime();
-long endTime=session.getLastAccessedTime();
-%>
-<P>恭喜你猜对了<BR>
-您共猜了<%=count%>次
-<p>用时<%=(endTime-startTime)/1000%>秒。
-<p>这个数字就是<%=num%>
-<p>您必须重启浏览器才能获得新的数。
+	<%
+		int count=((Integer)session.getAttribute("count")).intValue();
+		int num=((Integer)session.getAttribute("save")).intValue();
+		long startTime=session.getCreationTime();
+		long endTime=session.getLastAccessedTime();
+	%>
+	<P>不好意思，您3次都没有猜中，所以您输了<BR>
+	您共猜了<%=count-1%>次
+	<p>您总共用时<%=(endTime-startTime)/1000%>秒。
+	<p>正确的数字是是<%=num%>
 </body>
 </html>

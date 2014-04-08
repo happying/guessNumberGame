@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'success.jsp' starting page</title>
+    <title>My JSP 'game.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,16 +23,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
 <body>
-<%
-int count=((Integer)session.getAttribute("count")).intValue();
-int num=((Integer)session.getAttribute("save")).intValue();
-long startTime=session.getCreationTime();
-long endTime=session.getLastAccessedTime();
-%>
-<P>恭喜你猜对了<BR>
-您共猜了<%=count%>次
-<p>用时<%=(endTime-startTime)/1000%>秒。
-<p>这个数字就是<%=num%>
-<p>您必须重启浏览器才能获得新的数。
+	<p>随机给了您一个0到9的数请您猜
+	<%
+		int number=(int)(Math.random()*10);
+		session.setAttribute("count",new Integer(0));
+		session.setAttribute("save",new Integer(number));
+	%>
+	<BR>
+	<p>请输入您猜的数
+	<form action="result.jsp" method=post name=form>
+		<input type="text" name="boy" value="">
+		<input type="submit" name="submit" value="确定">
+	</form>
 </body>
 </html>
